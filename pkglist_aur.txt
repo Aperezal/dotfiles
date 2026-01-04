@@ -1,0 +1,8 @@
+bluetuith
+bluetuith-debug
+networkmanager-dmenu-git
+rofi-bluetooth-git
+sddm-sugar-candy-git
+sddm-theme-sugar-candy-git
+yay
+yay-debug
