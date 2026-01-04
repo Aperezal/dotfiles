@@ -8,10 +8,7 @@ bluez-utils
 brightnessctl
 btop
 cliphist
-dolphin
-dunst
 efibootmgr
-eza
 fastfetch
 fd
 firefox
@@ -53,6 +50,7 @@ sddm
 sddm-sugar-candy-git
 sddm-theme-sugar-candy-git
 stow
+swaync
 thunar
 thunar-volman
 tlp
@@ -70,6 +68,5 @@ yay
 yay-debug
 zip
 zsh
-zsh-autocomplete
 zsh-autosuggestions
 zsh-syntax-highlighting
