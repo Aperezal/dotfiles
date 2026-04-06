@@ -1,31 +1,28 @@
 // -*- mode: jsonc -*-
 {
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 36, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    // --- General Styling & Layout ---
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "spacing": 4,
+    // "width": 1280, // Currently disabled
+
+    // --- Module Placement ---
     "modules-left": [
-        "custom/arch",
-        "hyprland/workspaces"
+        "clock",
+        "network", 
+        "network#tun0"
     ],
     "modules-center": [
-        "hyprland/window"
+        "custom/arch",
+        "hyprland/workspaces" 
     ],
     "modules-right": [
-        "idle_inhibitor",
-        "pulseaudio",
-        "network",
-        "cpu",
-        "memory",
-        "temperature",
-        "hyprland/language",
-        "backlight",
-        "battery",
-        "battery#bat2",
-        "clock"
+        "custom/htb_target"
     ],
+
+    // --- External Resources ---
     "include": [
-		"~/.config/waybar/modules.json"
-	]
+        "~/.config/waybar/modules.json"
+    ]
 }

@@ -22,6 +22,13 @@
       "deactivated": ""
     }
   },
+
+"custom/htb_target": {
+    "exec": "/home/apereza/.config/waybar/scripts/htb_target.sh",
+    "interval": 2,
+    "format": "{}"
+},
+
   "pulseaudio": {
     "format": "{icon}  {volume}%",
     "format-bluetooth": "{icon}  {volume}%  {format_source}",
@@ -41,12 +48,22 @@
     "on-click": "pavucontrol"
   },
   "network": {
-    "format-wifi": "   {essid} ({signalStrength}%)",
-    "format-ethernet": "{ipaddr}/{cidr} ",
-    "tooltip-format": "{ifname} via {gwaddr} ",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠"
+    "format-wifi": "<span color='#8be9fd'> </span>  {ipaddr}", 
+    "format-ethernet": "<span color='#8be9fd'>󰈀 </span>  {ipaddr}",
+    "format-disconnected": "󰈂 Disconnected",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)  {gwaddr}",
+    "tooltip-format-ethernet": "{ifname}  {gwaddr}",
+    "interval": 2
+   },
+
+  "network#tun0": {
+    "interface": "tun0",
+    "format": "󰆧  {ipaddr}",
+    "format-disconnected": "󰆧 Disconnected",
+    "tooltip-format": "HTB VPN: {ipaddr}",
+    "interval": 2
   },
+
   "cpu": {
     "format": "  {usage}%",
     "tooltip": true

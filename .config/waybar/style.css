@@ -1,12 +1,12 @@
 * {
     /* `otf-font-awesome` and SpaceMono Nerd Font are required to be installed for icons */
-    font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
+    font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif, SpaceMono Nerd Font;
+    font-size: 17px;
     transition: background-color .3s ease-out;
 }
 
 window#waybar {
-    background: rgba(26, 27, 38, 0.75);
+    background: transparent;
     color: #c0caf5;
     font-family: 
         SpaceMono Nerd Font,
@@ -14,17 +14,21 @@ window#waybar {
     transition: background-color .5s;
 }
 
-.modules-left,
-.modules-center,
-.modules-right
+.modules-center
 {
-    background: rgba(0, 0, 8, .7);
+    background: #1e1f20;
     margin: 5px 5px;
     padding: 0 5px;
     border-radius: 15px;
 }
+
+.modules-right {
+     padding: 0;
+}
+
 .modules-left {
-    padding: 0;
+  
+   padding: 0;
 }
 .modules-center {
     padding: 0 10px;
@@ -104,4 +108,45 @@ window#waybar {
 }
 #custom-arch:hover {
     color: #1793d1;
+}
+
+#network {
+    color: #8be9fd;
+    font-weight: bold;
+
+}
+
+#network.tun0 {
+    color: #7cb342;
+    background: #1e1f20; 
+    margin: 5px 8px;                
+    padding: 0 12px;                
+    border-radius: 15px;
+}
+#network.tun0.disconnected {
+    color: #ff5555; /* Turns red when the VPN is down */
+}
+
+#network.disconnected {
+    color: #ff5555; /* Turns red when the cable is unplugged */
+}
+
+
+#network,
+#clock {
+    background: #1e1f20; /* The background color for each pill */
+    color: #ffffff;
+    margin: 5px 8px;                /* This adds the physical space BETWEEN the pills */
+    padding: 0 12px;                /* This adds the space INSIDE the pill */
+    border-radius: 15px;
+}
+
+#custom-htb_target {
+    background: #1e1f20 ; 
+    color: #ffffff;                 /* Fallback text color */
+    margin: 5px 8px;                
+    padding: 0 50px;                
+    margin-left: 8px;
+    margin-right: 200px;
+    border-radius: 15px;
 }
