@@ -48,12 +48,21 @@
     "on-click": "pavucontrol"
   },
   "network": {
+    "interface": "w*",  
+    "format": "{placeholder}",
     "format-wifi": "<span color='#8be9fd'> </span>  {ipaddr}", 
     "format-ethernet": "<span color='#8be9fd'>󰈀 </span>  {ipaddr}",
     "format-disconnected": "󰈂 Disconnected",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)  {gwaddr}",
-    "tooltip-format-ethernet": "{ifname}  {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)   {gwaddr}",
+    "tooltip-format-ethernet": "{ifname} 󰈀 {gwaddr}",
     "interval": 2
+   },
+
+   "custom/network": {
+    "exec": "nmcli -t -f DEVICE,STATE,CONNECTION device | awk -F: '$1==\"enp3s0\" && $2==\"connected\" {print \"<span color=\\\"#8be9fd\\\">   </span>  \"$3; exit} $1==\"wlp5s0\" && $2==\"connected\" {print \"<span color=\\\"#8be9fd\\\"> </span>  \"$3; exit} END {print \"   Disconnected\"}'",
+    "interval": 2,
+    "format": "{}",
+    "tooltip": false
    },
 
   "network#tun0": {
@@ -89,6 +98,7 @@
     "format-icons": ["", "", "", "", "", "", "", "", ""]
   },
   "battery": {
+    "bat": "BAT0",
     "states": {
       "warning": 30,
       "critical": 15

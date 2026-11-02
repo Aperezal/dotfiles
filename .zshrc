@@ -126,6 +126,10 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 
+# --- Custom Overrides to Reclaim Alt+C ---
+bindkey '\eg' fzf-cd-widget       # Assign Alt+G to the fzf CD widget
+bindkey '\ec' capitalize-word     # Restore Alt+C to the standard Capitali
+
 # Preview Logic
 _FZF_PREVIEW_CMD='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -n 500'
 
@@ -144,9 +148,9 @@ export FZF_CTRL_R_OPTS="
 # 8. ALIASES
 # -----------------------------------------------------
 # --- Modern Replacements ---
-alias cat='bat'
+alias catnp='bat'
 alias catn='bat --style=plain'
-alias catnp='bat --style=plain --paging=never'
+alias cat='bat --style=plain --paging=never'
 alias ls='lsd --group-dirs=first'
 alias ll='lsd -lh --group-dirs=first'
 alias la='lsd -a --group-dirs=first'
@@ -167,6 +171,8 @@ alias v="nvim"
 alias vf="fzf --preview '$_FZF_PREVIEW_CMD' --bind 'enter:execute(nvim {})'"
 alias clearclip="cliphist wipe"
 alias copy="wl-copy"
+alias smbmap="python3 /usr/bin/smbmap.py"
+alias davtest="/opt/davtest/davtest.pl"
 
 # --- Config Management ---
 alias hyprconf='nvim ~/.config/hypr/hyprland.conf'
@@ -204,6 +210,11 @@ function mkt(){
 
 # Extract Ports from Nmap & Copy to Clipboard
 function extractPorts(){
+    if [ -z "$1" ] || [ ! -f "$1" ]; then
+        echo "[-] Error: Please provide a valid Nmap .gnmap/.nmap file."
+        return 1
+    fi 
+
     local tmp_file=$(mktemp)
     # Extract ports and IP
     ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
@@ -215,7 +226,7 @@ function extractPorts(){
     echo -e "\t[*] Open ports: $ports\n"  >> "$tmp_file"
     
     # Copy to clipboard
-    echo "$ports" | tr -d '\n' | xclip -sel clip
+    echo "$ports" | tr -d '\n' | wl-copy
     echo -e "[*] Ports copied to clipboard\n"  >> "$tmp_file"
     
     cat "$tmp_file"
@@ -224,8 +235,8 @@ function extractPorts(){
 
 # Secure Delete
 function rmk(){
-    scrub -p dod $1
-    shred -zun 10 -v $1
+    scrub -p dod "$1"
+    shred -zun 10 -v "$1"
 }
 
 

@@ -18,7 +18,11 @@
         "hyprland/workspaces" 
     ],
     "modules-right": [
-        "custom/htb_target"
+        "custom/htb_target",
+        "cpu",
+        "memory",
+        "battery"
+
     ],
 
     // --- External Resources ---

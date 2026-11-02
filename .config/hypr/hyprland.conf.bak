@@ -42,6 +42,10 @@ exec-once = wl-paste --type image --watch cliphist store
 # Scratchpad "Quake Style" (Starts the terminal hidden for instant open)
 exec-once = [workspace special:scratch silent;float;size 80% 70%;center] kitty --class scratchpad_term
 
+
+# exec-once = while true; do waybar; sleep 0.5; done
+
+
 # -----------------------------------------------------
 # 4. ENVIRONMENT VARIABLES
 # -----------------------------------------------------
@@ -68,6 +72,10 @@ input {
 device {
     name = epic-mouse-v1
     sensitivity = -0.5
+}
+
+cursor {
+    no_hardware_cursors = true
 }
 
 # -----------------------------------------------------
@@ -140,10 +148,10 @@ animations {
 }
 
 # Configuration for the 'dwindle' tiling engine.
-dwindle {
-    pseudotile = true 
-    preserve_split = true 
-}
+# dwindle {
+#     pseudotile = true 
+#     preserve_split = true 
+# }
 
 # Configuration for the 'master' tiling engine.
 master {
@@ -154,6 +162,7 @@ master {
 misc {
     force_default_wallpaper = 0 
     disable_hyprland_logo = true 
+   # disable_autoreload = true
 }
 
 # -----------------------------------------------------
@@ -168,9 +177,9 @@ misc {
 # XWayland Fix: Prevents "ghost" windows (menus/tooltips) from stealing focus.
 # windowrulev2 = nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0
 
-xwayland {
-    force_zero_scaling = true
-}
+# xwayland {
+#     force_zero_scaling = true
+# }
 
 # -----------------------------------------------------
 # 8. KEYBINDINGS
@@ -182,7 +191,7 @@ bind = $mainMod, Return, exec, $terminal
 bind = $mainMod, E, exec, $fileManager
 bind = $mainMod, Space, exec, $menu
 bind = $mainMod SHIFT, F, exec, $browser
-bind = ALT, L, exec, hyprlock 
+bind = ALT, J, exec, hyprlock 
 bind = $mainMod, N, exec, networkmanager_dmenu
 bind = $mainMod, B, exec, [float;size 700 500;center;stayfocused] kitty --class bluetooth_tui -e bluetuith
 bind = CTRL SHIFT, Escape, exec, [float;size 950 650;center;stayfocused] kitty --class btop_custom -e btop
@@ -193,6 +202,7 @@ bind = $mainMod, W, killactive,            # Close window
 bind = $mainMod SHIFT, Q, exit,            # Exit Hyprland
 bind = $mainMod, S, togglefloating,        # Toggle floating
 bind = $mainMod, P, pseudo,                # Pseudo-tiling
+bind = $mainMod SHIFT, P, exec, ~/.local/bin/hypr-display-menu.sh       # Trigger the display selection menu
 # bind = $mainMod, M, togglesplit,           # Toggle split (Horizontal/Vertical)
 
 # --- SCRATCHPAD (Hidden Console) ---
@@ -291,4 +301,5 @@ bindl = , XF86AudioPrev, exec, playerctl previous
 
 
 
-
+# Fallback: manually lock the screen when the lid switch closes
+bindl=,switch:on:Lid Switch, exec, pidof hyprlock || hyprlock

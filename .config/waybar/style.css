@@ -34,9 +34,9 @@ window#waybar {
     padding: 0 10px;
 }
 
-#clock,
-#battery,
-#cpu,
+/* #clock */
+/* #battery, */
+/* #cpu, */
 #memory,
 #disk,
 #temperature,
@@ -131,12 +131,15 @@ window#waybar {
     color: #ff5555; /* Turns red when the cable is unplugged */
 }
 
-
+#clock,
+#memory,
+#battery,
+#cpu,
 #network,
 #clock {
     background: #1e1f20; /* The background color for each pill */
     color: #ffffff;
-    margin: 5px 8px;                /* This adds the physical space BETWEEN the pills */
+    margin: 2px 2px;                /* This adds the physical space BETWEEN the pills */
     padding: 0 12px;                /* This adds the space INSIDE the pill */
     border-radius: 15px;
 }
@@ -147,6 +150,6 @@ window#waybar {
     margin: 5px 8px;                
     padding: 0 50px;                
     margin-left: 8px;
-    margin-right: 200px;
+    margin-right: 100px;
     border-radius: 15px;
 }
